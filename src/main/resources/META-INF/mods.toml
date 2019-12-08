@@ -1,0 +1,46 @@
+modLoader="javafml"
+loaderVersion="[28,)"
+
+[[mods]] #mandatory
+    modId="growthcraft" #mandatory
+    # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
+    version="5.0.0.000" #mandatory
+    displayName="Growtchraft" #mandatory
+    # A URL to query for updates for this mod. See the JSON update specification <here>
+    #updateJSONURL="http://myurl.me/" #optional
+    displayURL="https://github.com/GrowthcraftCE/Growthcraft-1.14/wiki" #optional
+    logoFile="growthcraft_core_logo.png" #optional
+    credits="Thanks to Gwafu for starting a great mod. And the Growthcraft CE Development for continuing the work." #optional
+    authors="Alatyami" #optional
+    description='''
+    Growtchraft is a realistic and immersive Forge mod that adds various new elements to the game of Minecraft.
+    '''
+
+    [[dependencies.growthgraft]] #optional
+        modId="forge" #mandatory
+        mandatory=true #mandatory
+        versionRange="[28,)" #mandatory
+        ordering="AFTER"
+        side="BOTH"
+    [[dependencies.growthgraft]]
+        modId="minecraft"
+        mandatory=true
+        versionRange="[1.14.4]"
+        ordering="AFTER"
+        side="BOTH"
+
+[[mods]]
+    modId="growthcraft_trapper"
+    version="5.0.0.000"
+    displayName="Growtchraft Trapper"
+    logoFile="growthcraft_fishtrap_logo.png"
+    description='''
+    As a child mod to Growthcraft, Growthcraft Trapper adds passive devices to trap things.
+    '''
+
+    [[dependencies.growthcraft_trapper]]
+        modId="growthcraft"
+        mandatory=true
+        versionRange="[5,)"
+        ordering="AFTER"
+        side="BOTH"
