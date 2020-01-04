@@ -1,0 +1,32 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "particle": "growthcraft_milk:blocks/butter_churn/butter_churn"
+    }
+  },
+  "variants": {
+    "rotation" : {
+      "north" : {
+      },
+      "south" : {
+      },
+      "east" : {
+      },
+      "west" : {
+      },
+      "up" : {
+      },
+      "down" : {
+      }      
+    },
+    "isplunger" : {
+      "true" : {
+        "model": "growthcraft_milk:churn_down"
+      },
+      "false" : {
+        "model": "growthcraft:dummy"
+      }      
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+  	"model": "growthcraft_grapes:grape_vine_fruit"
+  },
+  "variants": {
+    "type": {
+      "0": {
+        "textures": {
+          "cross": "growthcraft_grapes:items/grape/purple"
+        }
+      },
+      "1": {
+        "textures": {
+          "cross": "growthcraft_grapes:items/grape/green"
+        }
+      },
+      "2": {
+        "textures": {
+          "cross": "growthcraft_grapes:items/grape/red"
+        }
+      },
+      "3": {
+        "textures": {
+          "cross": "growthcraft_grapes:items/grape/red"
+        }
+      },
+      "4": {
+        "textures": {
+          "cross": "growthcraft_grapes:items/grape/red"
+        }
+      },
+      "5": {
+        "textures": {
+          "cross": "growthcraft_grapes:items/grape/red"
+        }
+      },
+      "6": {
+        "textures": {
+          "cross": "growthcraft_grapes:items/grape/red"
+        }
+      },
+      "7": {
+        "textures": {
+          "cross": "growthcraft_grapes:items/grape/red"
+        }
+      }
+    }    
+  }
+}

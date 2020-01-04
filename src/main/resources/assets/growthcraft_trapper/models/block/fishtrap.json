@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "particle": "growthcraft_trapper:block/fishtrap",
+    "all": "growthcraft_trapper:block/fishtrap"
+  }
+}

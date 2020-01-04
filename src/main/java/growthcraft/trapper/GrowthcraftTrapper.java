@@ -1,11 +1,18 @@
 package growthcraft.trapper;
 
+import growthcraft.trapper.setup.ClientProxy;
+import growthcraft.trapper.setup.IProxy;
+import growthcraft.trapper.setup.ServerProxy;
+import growthcraft.trapper.common.blocks.FishtrapBlock;
 import growthcraft.trapper.shared.Reference;
+import growthcraft.trapper.shared.init.GrowthcraftTrapperBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -21,6 +28,7 @@ import java.util.stream.Collectors;
 @Mod(Reference.MODID)
 public class GrowthcraftTrapper {
 
+    public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
     private static final Logger LOGGER = LogManager.getLogger(Reference.MODID);
 
     public GrowthcraftTrapper() {
@@ -31,19 +39,17 @@ public class GrowthcraftTrapper {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
+
     private void setup(final FMLCommonSetupEvent event) {
-        LOGGER.info("Pre-Initializing Growthcraft Trapper ...");
+        LOGGER.info("Calling FMLCommonSetupEvent for " + Reference.MODID);
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
-        LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
+        LOGGER.info("Calling FMLClientSetupEvent for " + Reference.MODID);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
-        InterModComms.sendTo(Reference.MODID, "helloworld", () -> {
-            LOGGER.info("Hello world from the MDK");
-            return "Hello world";
-        });
+        // Do Nothing at This Time
     }
 
     private void processIMC(final InterModProcessEvent event) {
@@ -54,14 +60,28 @@ public class GrowthcraftTrapper {
 
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
-        LOGGER.info("HELLO from server starting");
+        LOGGER.info("Server is starting " + Reference.MODID);
     }
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
+
+        private RegistryEvents() {
+            /* Do Nothing */
+        }
+
         @SubscribeEvent
-        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            LOGGER.info("HELLO from Register Block");
+        public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
+            LOGGER.info(Reference.MODID + " registering blocks...");
+            event.getRegistry().register(new FishtrapBlock());
+        }
+
+        @SubscribeEvent
+        public static void onItemsRegistry( final RegistryEvent.Register<Item> event ) {
+            LOGGER.info(Reference.MODID + " registering items...");
+            Item.Properties properties = new Item.Properties();
+
+            event.getRegistry().register(new BlockItem(GrowthcraftTrapperBlocks.fishtrap, properties).setRegistryName(Reference.MODID, FishtrapBlock.unlocalizedName));
         }
     }
 }

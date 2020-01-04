@@ -21,7 +21,7 @@ public class RockSaltOreBlock extends Block {
      * @return Block properties for this block.
      */
     private static Properties getInitProperties() {
-        Properties properties = Properties.create(Material.WOOD);
+        Properties properties = Properties.create(Material.ROCK);
         properties.hardnessAndResistance(3.0F, 5.0F);
         properties.harvestTool(ToolType.PICKAXE);
         properties.harvestLevel(1);
