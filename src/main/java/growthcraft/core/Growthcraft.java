@@ -2,6 +2,7 @@ package growthcraft.core;
 
 import growthcraft.core.common.blocks.RockSaltOreBlock;
 import growthcraft.core.common.blocks.SaltBlock;
+import growthcraft.core.common.items.SaltItem;
 import growthcraft.core.setup.ModSetup;
 import growthcraft.core.shared.Reference;
 import growthcraft.core.shared.init.GrowthcraftCoreBlocks;
@@ -106,6 +107,7 @@ public class Growthcraft {
                     .setRegistryName(Reference.MODID, SaltBlock.unlocalizedName)
             );
 
+            event.getRegistry().register(new SaltItem());
         }
     }
 }

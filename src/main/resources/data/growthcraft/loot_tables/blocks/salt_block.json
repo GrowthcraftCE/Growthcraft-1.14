@@ -3,11 +3,11 @@
   "pools": [
     {
       "name": "pool1",
-      "rolls": 3,
+      "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "growthcraft:salt"
+          "name": "growthcraft:salt_block"
         }
       ],
       "conditions": [
