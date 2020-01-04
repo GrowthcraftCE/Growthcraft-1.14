@@ -1,12 +1,23 @@
 package growthcraft.trapper.setup;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.World;
 
 public class ServerProxy implements IProxy {
 
     @Override
-    public Minecraft getClientWorld() {
-        throw new IllegalStateException("This should only be called on client.");
+    public void init() {
+
+    }
+
+    @Override
+    public World getClientWorld() {
+        throw new IllegalStateException("Only run this on the client!");
+    }
+
+    @Override
+    public PlayerEntity getClientPlayer() {
+        throw new IllegalStateException("Only run this on the client!");
     }
 
 }

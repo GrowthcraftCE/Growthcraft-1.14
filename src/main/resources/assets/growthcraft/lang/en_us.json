@@ -1,4 +1,5 @@
 {
   "block.growthcraft.rocksalt_ore": "Rock Salt Ore",
-  "block.growthcraft.salt_block": "Salt Block"
+  "block.growthcraft.salt_block": "Salt Block",
+  "itemGroup.growthcraft": "Growthcraft"
 }

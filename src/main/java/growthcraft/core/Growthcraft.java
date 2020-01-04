@@ -2,14 +2,17 @@ package growthcraft.core;
 
 import growthcraft.core.common.blocks.RockSaltOreBlock;
 import growthcraft.core.common.blocks.SaltBlock;
+import growthcraft.core.setup.ModSetup;
 import growthcraft.core.shared.Reference;
 import growthcraft.core.shared.init.GrowthcraftCoreBlocks;
-import growthcraft.trapper.setup.ClientProxy;
-import growthcraft.trapper.setup.IProxy;
-import growthcraft.trapper.setup.ServerProxy;
+import growthcraft.core.setup.ClientProxy;
+import growthcraft.core.setup.IProxy;
+import growthcraft.core.setup.ServerProxy;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -32,6 +35,8 @@ public class Growthcraft {
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
     private static final Logger LOGGER = LogManager.getLogger(growthcraft.trapper.shared.Reference.MODID);
 
+    public static ModSetup setup = new ModSetup();
+
     public Growthcraft() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
@@ -40,8 +45,17 @@ public class Growthcraft {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
+    public static ItemGroup itemGroup = new ItemGroup(Reference.MODID) {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(GrowthcraftCoreBlocks.rockSaltOreBlock);
+        }
+    };
+
     private void setup(final FMLCommonSetupEvent event) {
         LOGGER.info("Calling FMLCommonSetupEvent for " + growthcraft.trapper.shared.Reference.MODID);
+        setup.init();
+        proxy.init();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -80,7 +94,7 @@ public class Growthcraft {
         @SubscribeEvent
         public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
             LOGGER.info(growthcraft.trapper.shared.Reference.MODID + " registering items...");
-            Item.Properties properties = new Item.Properties();
+            Item.Properties properties = new Item.Properties().group(itemGroup);
 
             event.getRegistry().register(new BlockItem(
                     GrowthcraftCoreBlocks.rockSaltOreBlock, properties)

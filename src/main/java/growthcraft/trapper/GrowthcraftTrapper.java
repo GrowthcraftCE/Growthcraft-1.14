@@ -1,5 +1,6 @@
 package growthcraft.trapper;
 
+import growthcraft.core.Growthcraft;
 import growthcraft.trapper.setup.ClientProxy;
 import growthcraft.trapper.setup.IProxy;
 import growthcraft.trapper.setup.ServerProxy;
@@ -24,6 +25,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.stream.Collectors;
+
+import static growthcraft.core.Growthcraft.setup;
 
 @Mod(Reference.MODID)
 public class GrowthcraftTrapper {
@@ -79,9 +82,11 @@ public class GrowthcraftTrapper {
         @SubscribeEvent
         public static void onItemsRegistry( final RegistryEvent.Register<Item> event ) {
             LOGGER.info(Reference.MODID + " registering items...");
-            Item.Properties properties = new Item.Properties();
+            Item.Properties properties = new Item.Properties().group(Growthcraft.itemGroup);
 
-            event.getRegistry().register(new BlockItem(GrowthcraftTrapperBlocks.fishtrap, properties).setRegistryName(Reference.MODID, FishtrapBlock.unlocalizedName));
+            event.getRegistry().register(new BlockItem(
+                    GrowthcraftTrapperBlocks.fishtrap, properties)
+                    .setRegistryName(Reference.MODID, FishtrapBlock.unlocalizedName));
         }
     }
 }
