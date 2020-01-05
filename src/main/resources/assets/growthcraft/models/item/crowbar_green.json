@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "growthcraft:items/crowbar/green"
+    "layer0": "growthcraft:item/crowbar/green"
   }
 }

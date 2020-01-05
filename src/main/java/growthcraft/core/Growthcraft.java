@@ -2,6 +2,7 @@ package growthcraft.core;
 
 import growthcraft.core.common.blocks.RockSaltOreBlock;
 import growthcraft.core.common.blocks.SaltBlock;
+import growthcraft.core.common.items.CrowbarItem;
 import growthcraft.core.common.items.SaltItem;
 import growthcraft.core.setup.ModSetup;
 import growthcraft.core.shared.Reference;
@@ -10,10 +11,7 @@ import growthcraft.core.setup.ClientProxy;
 import growthcraft.core.setup.IProxy;
 import growthcraft.core.setup.ServerProxy;
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -108,6 +106,11 @@ public class Growthcraft {
             );
 
             event.getRegistry().register(new SaltItem());
+
+            for ( DyeColor colour : DyeColor.values() ) {
+                event.getRegistry().register(new CrowbarItem(colour.getName()));
+            }
+
         }
     }
 }
