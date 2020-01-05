@@ -10,11 +10,11 @@
       "item": "minecraft:iron_nugget"
     },
     "d": {
-      "item": "minecraft:black_dye"
+      "item": "minecraft:gray_dye"
     }
   },
   "result": {
-    "item": "growthcraft:crowbar_black",
+    "item": "growthcraft:crowbar_gray",
     "count": 1
   }
 }
