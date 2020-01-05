@@ -16,6 +16,7 @@ public class CrowbarItem extends Item {
     private static Properties getInitProperties() {
         Properties properties = new Properties();
         properties.group(Growthcraft.itemGroup);
+        properties.maxStackSize(1);
         return properties;
     }
 

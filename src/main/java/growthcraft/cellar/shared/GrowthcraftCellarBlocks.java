@@ -1,4 +1,4 @@
-package growthcraft.cellar.shared.init;
+package growthcraft.cellar.shared;
 
 public class GrowthcraftCellarBlocks {
 }

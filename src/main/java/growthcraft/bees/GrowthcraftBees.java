@@ -1,14 +1,11 @@
-package growthcraft.trapper;
+package growthcraft.bees;
 
+import growthcraft.bees.setup.ClientProxy;
+import growthcraft.bees.setup.IProxy;
+import growthcraft.bees.setup.ServerProxy;
+import growthcraft.bees.shared.Reference;
 import growthcraft.core.Growthcraft;
-import growthcraft.trapper.setup.ClientProxy;
-import growthcraft.trapper.setup.IProxy;
-import growthcraft.trapper.setup.ServerProxy;
-import growthcraft.trapper.common.blocks.FishtrapBlock;
-import growthcraft.trapper.shared.Reference;
-import growthcraft.trapper.shared.init.GrowthcraftTrapperBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -27,19 +24,18 @@ import org.apache.logging.log4j.Logger;
 import java.util.stream.Collectors;
 
 @Mod(Reference.MODID)
-public class GrowthcraftTrapper {
+public class GrowthcraftBees {
 
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
     private static final Logger LOGGER = LogManager.getLogger(Reference.MODID);
 
-    public GrowthcraftTrapper() {
+    public GrowthcraftBees() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
         MinecraftForge.EVENT_BUS.register(this);
     }
-
 
     private void setup(final FMLCommonSetupEvent event) {
         LOGGER.info("Calling FMLCommonSetupEvent for " + Reference.MODID);
@@ -64,6 +60,7 @@ public class GrowthcraftTrapper {
         LOGGER.info("Server is starting " + Reference.MODID);
     }
 
+
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
 
@@ -74,7 +71,7 @@ public class GrowthcraftTrapper {
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
             LOGGER.info(Reference.MODID + " registering blocks...");
-            event.getRegistry().register(new FishtrapBlock());
+
         }
 
         @SubscribeEvent
@@ -82,9 +79,6 @@ public class GrowthcraftTrapper {
             LOGGER.info(Reference.MODID + " registering items...");
             Item.Properties properties = new Item.Properties().group(Growthcraft.itemGroup);
 
-            event.getRegistry().register(new BlockItem(
-                    GrowthcraftTrapperBlocks.fishtrap, properties)
-                    .setRegistryName(Reference.MODID, FishtrapBlock.unlocalizedName));
         }
     }
 }
