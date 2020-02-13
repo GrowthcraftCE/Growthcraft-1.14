@@ -1,13 +1,10 @@
 package growthcraft.core.setup;
 
-import growthcraft.core.shared.Reference;
-import growthcraft.core.shared.init.GrowthcraftCoreBlocks;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
+import growthcraft.core.shared.worldgen.OreGeneration;
 
 public class ModSetup {
 
     public void init() {
-
+        OreGeneration.setupOreGeneration();
     }
 }

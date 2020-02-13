@@ -6,6 +6,7 @@ import growthcraft.core.common.items.CrowbarItem;
 import growthcraft.core.common.items.SaltItem;
 import growthcraft.core.setup.ModSetup;
 import growthcraft.core.shared.Reference;
+import growthcraft.core.shared.config.GrowthcraftCoreConfig;
 import growthcraft.core.shared.init.GrowthcraftCoreBlocks;
 import growthcraft.core.setup.ClientProxy;
 import growthcraft.core.setup.IProxy;
@@ -16,13 +17,16 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,20 +35,32 @@ import java.util.stream.Collectors;
 @Mod(Reference.MODID)
 public class Growthcraft {
 
-    public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
+    public static final IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
     private static final Logger LOGGER = LogManager.getLogger(growthcraft.core.shared.Reference.MODID);
 
-    public static ModSetup setup = new ModSetup();
+    public static final ModSetup setup = new ModSetup();
 
     public Growthcraft() {
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, GrowthcraftCoreConfig.SERVER, GrowthcraftCoreConfig.SERVER_CONFIG);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, GrowthcraftCoreConfig.CLIENT, GrowthcraftCoreConfig.CLIENT_CONFIG);
+
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+
+        GrowthcraftCoreConfig.loadConfig(
+                GrowthcraftCoreConfig.SERVER, FMLPaths.CONFIGDIR.get().
+                        resolve(GrowthcraftCoreConfig.SERVER_CONFIG).toString());
+        GrowthcraftCoreConfig.loadConfig(
+                GrowthcraftCoreConfig.CLIENT, FMLPaths.CONFIGDIR.get().
+                        resolve(GrowthcraftCoreConfig.CLIENT_CONFIG).toString());
+
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    public static ItemGroup itemGroup = new ItemGroup(Reference.MODID) {
+    public static final ItemGroup itemGroup = new ItemGroup(Reference.MODID) {
         @Override
         public ItemStack createIcon() {
             return new ItemStack(GrowthcraftCoreBlocks.rockSaltOreBlock);
