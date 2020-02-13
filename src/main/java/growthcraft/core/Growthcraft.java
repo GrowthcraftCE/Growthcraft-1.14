@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 public class Growthcraft {
 
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
-    private static final Logger LOGGER = LogManager.getLogger(growthcraft.trapper.shared.Reference.MODID);
+    private static final Logger LOGGER = LogManager.getLogger(growthcraft.core.shared.Reference.MODID);
 
     public static ModSetup setup = new ModSetup();
 
@@ -52,13 +52,13 @@ public class Growthcraft {
     };
 
     private void setup(final FMLCommonSetupEvent event) {
-        LOGGER.info("Calling FMLCommonSetupEvent for " + growthcraft.trapper.shared.Reference.MODID);
+        LOGGER.info("Calling FMLCommonSetupEvent for " + growthcraft.core.shared.Reference.MODID);
         setup.init();
         proxy.init();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
-        LOGGER.info("Calling FMLClientSetupEvent for " + growthcraft.trapper.shared.Reference.MODID);
+        LOGGER.info("Calling FMLClientSetupEvent for " + growthcraft.core.shared.Reference.MODID);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
@@ -73,7 +73,7 @@ public class Growthcraft {
 
     @SubscribeEvent
     public void onServerStarting(FMLServerStartingEvent event) {
-        LOGGER.info("Server is starting " + growthcraft.trapper.shared.Reference.MODID);
+        LOGGER.info("Server is starting " + growthcraft.core.shared.Reference.MODID);
     }
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -85,14 +85,14 @@ public class Growthcraft {
 
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
-            LOGGER.info(growthcraft.trapper.shared.Reference.MODID + " registering blocks...");
+            LOGGER.info(growthcraft.core.shared.Reference.MODID + " registering blocks...");
             event.getRegistry().register(new RockSaltOreBlock());
             event.getRegistry().register(new SaltBlock());
         }
 
         @SubscribeEvent
         public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
-            LOGGER.info(growthcraft.trapper.shared.Reference.MODID + " registering items...");
+            LOGGER.info(growthcraft.core.shared.Reference.MODID + " registering items...");
             Item.Properties properties = new Item.Properties().group(itemGroup);
 
             event.getRegistry().register(new BlockItem(
