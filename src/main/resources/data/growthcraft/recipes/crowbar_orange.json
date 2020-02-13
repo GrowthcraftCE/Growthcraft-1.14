@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " xx",
+    " d ",
+    "xx "
+  ],
+  "key": {
+    "x": {
+      "item": "minecraft:iron_nugget"
+    },
+    "d": {
+      "item": "minecraft:orange_dye"
+    }
+  },
+  "result": {
+    "item": "growthcraft:crowbar_orange",
+    "count": 1
+  }
+}
