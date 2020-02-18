@@ -1,4 +1,4 @@
-package growthcraft.core.common.blocks;
+package growthcraft.core.common.block;
 
 import growthcraft.core.shared.Reference;
 import net.minecraft.block.Block;
@@ -6,11 +6,11 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.common.ToolType;
 
-public class RockSaltOreBlock extends Block {
+public class BlockRockSaltOre extends Block {
 
     public static final String unlocalizedName = "rocksalt_ore";
 
-    public RockSaltOreBlock() {
+    public BlockRockSaltOre() {
         super(getInitProperties());
         this.setRegistryName(Reference.MODID, unlocalizedName);
     }

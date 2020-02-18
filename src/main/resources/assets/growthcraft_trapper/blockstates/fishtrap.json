@@ -1,5 +1,10 @@
 {
   "variants": {
-    "": { "model": "growthcraft_trapper:block/fishtrap" }
+    "facing=north": { "model": "growthcraft_trapper:block/fishtrap" },
+    "facing=south": { "model": "growthcraft_trapper:block/fishtrap", "y": 180 },
+    "facing=west": { "model": "growthcraft_trapper:block/fishtrap", "y": 270 },
+    "facing=east": { "model": "growthcraft_trapper:block/fishtrap", "y": 90 },
+    "facing=up": { "model": "growthcraft_trapper:block/fishtrap", "x": -90 },
+    "facing=down": { "model": "growthcraft_trapper:block/fishtrap", "x": 90 }
   }
 }

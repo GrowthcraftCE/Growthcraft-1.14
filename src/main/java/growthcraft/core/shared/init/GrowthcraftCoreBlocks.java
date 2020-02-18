@@ -1,7 +1,7 @@
 package growthcraft.core.shared.init;
 
-import growthcraft.core.common.blocks.RockSaltOreBlock;
-import growthcraft.core.common.blocks.SaltBlock;
+import growthcraft.core.common.block.BlockRockSaltOre;
+import growthcraft.core.common.block.BlockSalt;
 import growthcraft.core.shared.Reference;
 import net.minecraftforge.registries.ObjectHolder;
 
@@ -11,10 +11,10 @@ public class GrowthcraftCoreBlocks {
         // Private constructor, do nothing.
     }
 
-    @ObjectHolder(Reference.MODID + ":" + RockSaltOreBlock.unlocalizedName)
-    public static RockSaltOreBlock rockSaltOreBlock;
+    @ObjectHolder(Reference.MODID + ":" + BlockRockSaltOre.unlocalizedName)
+    public static BlockRockSaltOre rockSaltOreBlock;
 
-    @ObjectHolder(SaltBlock.modReferenceName)
-    public static SaltBlock saltBlock;
+    @ObjectHolder(BlockSalt.modReferenceName)
+    public static BlockSalt blockSalt;
 
 }

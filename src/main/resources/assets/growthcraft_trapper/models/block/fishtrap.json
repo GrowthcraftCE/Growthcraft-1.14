@@ -1,7 +1,12 @@
 {
-  "parent": "block/cube_all",
+  "parent": "block/cube",
   "textures": {
     "particle": "growthcraft_trapper:block/fishtrap",
-    "all": "growthcraft_trapper:block/fishtrap"
+    "down": "growthcraft_trapper:block/fishtrap",
+    "up": "growthcraft_trapper:block/fishtrap",
+    "east": "growthcraft_trapper:block/fishtrap",
+    "west": "growthcraft_trapper:block/fishtrap",
+    "north": "growthcraft_trapper:block/fishtrap_front",
+    "south": "growthcraft_trapper:block/fishtrap"
   }
 }

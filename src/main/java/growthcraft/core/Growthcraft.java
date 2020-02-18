@@ -1,9 +1,9 @@
 package growthcraft.core;
 
-import growthcraft.core.common.blocks.RockSaltOreBlock;
-import growthcraft.core.common.blocks.SaltBlock;
-import growthcraft.core.common.items.CrowbarItem;
-import growthcraft.core.common.items.SaltItem;
+import growthcraft.core.common.block.BlockRockSaltOre;
+import growthcraft.core.common.block.BlockSalt;
+import growthcraft.core.common.item.ItemCrowbar;
+import growthcraft.core.common.item.ItemSalt;
 import growthcraft.core.setup.ModSetup;
 import growthcraft.core.shared.Reference;
 import growthcraft.core.shared.config.GrowthcraftCoreConfig;
@@ -102,8 +102,8 @@ public class Growthcraft {
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
             LOGGER.info(growthcraft.core.shared.Reference.MODID + " registering blocks...");
-            event.getRegistry().register(new RockSaltOreBlock());
-            event.getRegistry().register(new SaltBlock());
+            event.getRegistry().register(new BlockRockSaltOre());
+            event.getRegistry().register(new BlockSalt());
         }
 
         @SubscribeEvent
@@ -113,18 +113,18 @@ public class Growthcraft {
 
             event.getRegistry().register(new BlockItem(
                     GrowthcraftCoreBlocks.rockSaltOreBlock, properties)
-                    .setRegistryName(Reference.MODID, RockSaltOreBlock.unlocalizedName)
+                    .setRegistryName(Reference.MODID, BlockRockSaltOre.unlocalizedName)
             );
 
             event.getRegistry().register(new BlockItem(
-                    GrowthcraftCoreBlocks.saltBlock, properties)
-                    .setRegistryName(Reference.MODID, SaltBlock.unlocalizedName)
+                    GrowthcraftCoreBlocks.blockSalt, properties)
+                    .setRegistryName(Reference.MODID, BlockSalt.unlocalizedName)
             );
 
-            event.getRegistry().register(new SaltItem());
+            event.getRegistry().register(new ItemSalt());
 
             for ( DyeColor colour : DyeColor.values() ) {
-                event.getRegistry().register(new CrowbarItem(colour.getName()));
+                event.getRegistry().register(new ItemCrowbar(colour.getName()));
             }
 
         }
