@@ -33,7 +33,7 @@ import static growthcraft.core.Growthcraft.itemGroup;
 public class GrowthcraftTrapper {
 
     public static final IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
-    private static final Logger LOGGER = LogManager.getLogger(growthcraft.trapper.shared.Reference.MODID);
+    public static final Logger LOGGER = LogManager.getLogger(growthcraft.trapper.shared.Reference.MODID);
 
     public static final ModSetup setup = new ModSetup();
 
