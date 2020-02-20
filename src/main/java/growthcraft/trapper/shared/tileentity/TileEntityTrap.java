@@ -15,17 +15,18 @@ import javax.annotation.Nullable;
 
 public class TileEntityTrap extends TileEntity implements ITickableTileEntity {
 
-    private ItemStackHandler handler;
+    private ItemStackHandler inputHandler;
+    private ItemStackHandler outputHandler;
 
     public TileEntityTrap(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn);
     }
 
     private ItemStackHandler getHandler() {
-        if (handler == null) {
-            handler = new ItemStackHandler(1);
+        if (inputHandler == null) {
+            inputHandler = new ItemStackHandler(1);
         }
-        return handler;
+        return inputHandler;
     }
 
     @Override
@@ -37,15 +38,15 @@ public class TileEntityTrap extends TileEntity implements ITickableTileEntity {
 
     @Override
     public void read(CompoundNBT compound) {
-        CompoundNBT inventory = compound.getCompound("inventory");
-        getHandler().deserializeNBT(inventory);
+        CompoundNBT input = compound.getCompound("input");
+        getHandler().deserializeNBT(input);
         super.read(compound);
     }
 
     @Override
     public CompoundNBT write(CompoundNBT compound) {
-        CompoundNBT inventory = getHandler().serializeNBT();
-        compound.put("inventory", inventory);
+        CompoundNBT input = getHandler().serializeNBT();
+        compound.put("input", input);
         return super.write(compound);
     }
 
