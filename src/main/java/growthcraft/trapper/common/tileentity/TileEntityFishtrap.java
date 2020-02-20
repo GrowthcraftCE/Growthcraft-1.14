@@ -9,5 +9,8 @@ public class TileEntityFishtrap extends TileEntityTrap {
         super(GrowthcraftTrapperBlocks.fishtrapTileEntityType);
     }
 
-
+    @Override
+    public void tick() {
+        super.tick();
+    }
 }

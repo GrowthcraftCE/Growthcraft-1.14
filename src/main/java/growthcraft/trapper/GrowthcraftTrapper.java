@@ -101,6 +101,7 @@ public class GrowthcraftTrapper {
                     TileEntityType.Builder.create(
                             TileEntityFishtrap::new,
                             GrowthcraftTrapperBlocks.fishtrap).build(null)
+                    .setRegistryName(Reference.MODID, BlockFishtrap.unlocalizedName)
             );
         }
     }
