@@ -19,7 +19,7 @@ public class BlockFishtrap extends BlockTrap {
     // region TileEntity
     @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+    public TileEntity createTileEntity(BlockState state, IBlockReader blockReader) {
         return new TileEntityFishtrap();
     }
     // endregion

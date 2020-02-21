@@ -36,10 +36,9 @@ public class TrapItemStackHandler extends ItemStackHandler {
         if ( insertingLootItem && slot > 0) {
             for ( int i = 1; i < this.getSlots(); i++) {
                 try {
-                    this.insertLootedItem(i, stack, simulate, true);
-                    stack.shrink(-1);
+                    return this.insertLootedItem(i, stack, simulate, true);
                 } catch (Exception e) {
-                    // Do nothing, just swallow the exception.
+                    GrowthcraftTrapper.LOGGER.error("Failed to insert %d into slot id %d of a growthcraft trapper inventory handler. Submit a bug for this.", stack.getItem().getRegistryName(), slot);
                 }
             }
             insertingLootItem = false;
@@ -58,6 +57,14 @@ public class TrapItemStackHandler extends ItemStackHandler {
     public ItemStack insertLootedItem(int slot, @Nonnull ItemStack stack, boolean simulate, boolean insertLoot) {
         insertingLootItem = insertLoot;
         return insertItem(slot, stack, simulate);
+    }
+
+    public boolean isInventoryFull() {
+        int filledSlots = 0;
+        for ( int i = 1; i < this.getSlots(); i++) {
+            if(this.getStackInSlot(i).getCount() == this.getSlotLimit(i)) filledSlots++;
+        }
+        return filledSlots == this.getSlots();
     }
 
 }

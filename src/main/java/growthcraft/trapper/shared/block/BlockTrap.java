@@ -1,7 +1,6 @@
 package growthcraft.trapper.shared.block;
 
 import growthcraft.trapper.shared.Reference;
-import growthcraft.trapper.shared.tileentity.TileEntityTrap;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
@@ -10,11 +9,9 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
@@ -41,21 +38,6 @@ public class BlockTrap extends Block {
         return properties;
     }
 
-    @Override
-    public BlockRenderLayer getRenderLayer() {
-        return BlockRenderLayer.CUTOUT;
-    }
-
-    // region TileEntity
-    @Override
-    public boolean hasTileEntity(BlockState state) {
-        return true;
-    }
-
-    // TODO: Make subclass implement override of createTileEntity
-
-    // endregion
-
     // region DirectionalProperties
     public static Direction getFacingFromEntity(BlockPos clickedBlock, LivingEntity placer) {
         return Direction.getFacingFromVector(
@@ -63,6 +45,21 @@ public class BlockTrap extends Block {
                 (float) (placer.posY - clickedBlock.getY()),
                 (float) (placer.posZ - clickedBlock.getZ())
         );
+    }
+
+    @Override
+    public BlockRenderLayer getRenderLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
+
+    // TODO: Make subclass implement override of createTileEntity
+
+    // endregion
+
+    // region TileEntity
+    @Override
+    public boolean hasTileEntity(BlockState state) {
+        return true;
     }
 
     @Override
