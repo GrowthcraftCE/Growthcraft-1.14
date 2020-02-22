@@ -31,16 +31,8 @@ public class TrapItemStackHandler extends ItemStackHandler {
     @Nonnull
     @Override
     public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-        GrowthcraftTrapper.LOGGER.warn(String.format("Trying to insert %s into slot %d ... ", stack.getItem().getRegistryName(), slot));
         // If we are adding to the looted item slots, iterate over the slots and try and add the item.
         if ( insertingLootItem && slot > 0) {
-            for ( int i = 1; i < this.getSlots(); i++) {
-                try {
-                    return this.insertLootedItem(i, stack, simulate, true);
-                } catch (Exception e) {
-                    GrowthcraftTrapper.LOGGER.error("Failed to insert %d into slot id %d of a growthcraft trapper inventory handler. Submit a bug for this.", stack.getItem().getRegistryName(), slot);
-                }
-            }
             insertingLootItem = false;
             return  super.insertItem(slot, stack, simulate);
         }

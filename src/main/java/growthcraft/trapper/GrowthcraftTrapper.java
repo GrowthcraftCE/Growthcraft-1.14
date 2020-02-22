@@ -1,7 +1,9 @@
 package growthcraft.trapper;
 
 import growthcraft.core.setup.IProxy;
+import growthcraft.trapper.client.gui.ScreenFishtrap;
 import growthcraft.trapper.common.block.BlockFishtrap;
+import growthcraft.trapper.common.inventory.ContainerFishtrap;
 import growthcraft.trapper.common.tileentity.TileEntityFishtrap;
 import growthcraft.trapper.setup.ClientProxy;
 import growthcraft.trapper.setup.ModSetup;
@@ -9,9 +11,13 @@ import growthcraft.trapper.setup.ServerProxy;
 import growthcraft.trapper.shared.Reference;
 import growthcraft.trapper.shared.init.GrowthcraftTrapperBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -103,6 +109,18 @@ public class GrowthcraftTrapper {
                             GrowthcraftTrapperBlocks.fishtrap).build(null)
                     .setRegistryName(Reference.MODID, BlockFishtrap.unlocalizedName)
             );
+        }
+
+        /**
+         * Client side registry event
+         * @param event
+         */
+        @SubscribeEvent
+        public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> event ) {
+            event.getRegistry().register(IForgeContainerType.create ((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                return new ContainerFishtrap(windowId, GrowthcraftTrapper.proxy.getClientWorld(), pos, inv, GrowthcraftTrapper.proxy.getClientPlayer());
+            }).setRegistryName(BlockFishtrap.unlocalizedName));
         }
     }
 }
